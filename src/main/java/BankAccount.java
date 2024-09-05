@@ -3,8 +3,11 @@ public class BankAccount {
 
     public void withdraw(double amount){
         if (amount > balance){
-            throw new IllegalArgumentException("Niewystarczające saldo");
+            throw new IllegalArgumentException("Niewystarczajace saldo");
         }
         balance -= amount;
+    }
+    public void deposit(double amount){
+        balance += amount;
     }
 }
