@@ -1,15 +1,19 @@
 import spock.lang.Specification
 
 class CalculatorSpec extends Specification {
-    def "should add two numbers correctly"() {
+    def "test addition and mocked multi using Spy"() {
+        given:
+        Calculator calculator = Spy(Calculator)
 
-        given: "a calculator"
-        def calculator = new Calculator()
+        when:
+        int additionalResult = calculator.add(3,4)
+        int multiResutl = calculator.multiply(5,5)
 
-        when: "adding two numbers"
-        def result = calculator.add(2,3)
+        then:
+        additionalResult == 7
+        multiResutl == 100
 
-        then:"the result is the sum of the numbers"
-        result == 5
+        1 * calculator.add(3,4)
+        1 * calculator.multiply(_,_) >> 100
     }
 }
