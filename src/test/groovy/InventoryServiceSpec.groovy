@@ -29,7 +29,11 @@ class InventoryServiceSpec extends Specification {
         return [(dummyProductName): quantity] as Map
     }
 
-    private InventoryService getInventoryService(Map<String, Integer> stock) {
-        return new InventoryService(stock: stock)
+    InventoryService getInventoryService(Map<String, Integer> stock) {
+        def inventoryService = new InventoryService()
+        stock.each { product, quantity ->
+            inventoryService.addStock(product, quantity)
+        }
+        return inventoryService
     }
 }
