@@ -18,10 +18,11 @@ class InventoryServiceTest extends Specification {
         inventoryService.getStock(product) == expectedTotalQuantity
 
         where:
-        product     |   initialQuantity |   additionalQuantity  ||   expectedTotalQuantity
-        "Product A" |   10              |   5                   ||  15
-        "Product B" |   0               |   20                  ||  20
-        "Product C" |   5               |   10                  ||  15
+        product     | initialQuantity | additionalQuantity || expectedTotalQuantity
+        "Product A" | 10              | 5                  || 15
+        "Product B" | 0               | 20                 || 20
+        "Product C" | 5               | 10                 || 15
+        "Product D" | 1               | 1                  || 2
     }
 
     def "should throw exception when removing more stock than available"() {
@@ -37,7 +38,7 @@ class InventoryServiceTest extends Specification {
 
     }
 
-    def "should thrown exception when removing zero or negative stock"(){
+    def "should thrown exception when removing zero or negative stock"() {
         when: "zero or negative quantity is removed"
         inventoryService.removeStock("Product A", quantity)
 
@@ -46,10 +47,10 @@ class InventoryServiceTest extends Specification {
         exception.message == "Quantity must be greater than zero"
 
         where:
-        quantity << [0,-5]
+        quantity << [0, -5, 1]
     }
 
-    def "should return zero stock for nonexist product"(){
+    def "should return zero stock for nonexist product"() {
         expect: "getStock should return 0 for a product not in inventory"
         inventoryService.getStock() == 0
     }
