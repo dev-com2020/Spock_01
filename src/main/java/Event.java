@@ -2,6 +2,9 @@ import java.time.LocalDate;
 
 public class Event {
 
+    public Event(Type type, String customerName, LocalDate timestamp) {
+    }
+
     public enum Type {REMINDER_SENT, REGISTRATION, INVOICE_ISSUED, PAYMENT, SETTLEMENT};
 
     private Type type;

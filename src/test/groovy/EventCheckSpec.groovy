@@ -30,5 +30,4 @@ class EventCheckSpec extends Specification {
         })
     }
 
-
 }
