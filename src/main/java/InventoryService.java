@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class InventoryService {
 
-    private Map<String, Integer> stock = new HashMap<>();
+    private final Map<String, Integer> stock = new HashMap<>();
 
     public void addStock(String product, int quantity) {
         if (quantity <= 0) {
