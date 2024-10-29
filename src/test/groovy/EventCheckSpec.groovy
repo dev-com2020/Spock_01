@@ -7,7 +7,7 @@ class EventCheckSpec extends Specification {
     private InvoiceStorage invoiceStorage = Stub(InvoiceStorage.class)
     private EventRecorder eventRecorder = Mock(EventRecorder.class)
 
-    private LateInvoiceNotifier lateInvoiceNotifier = new LateInvoiceNotifier(emailSender,invoiceStorage)
+    private LateInvoiceNotifier lateInvoiceNotifier = new LateInvoiceNotifier(emailSender,invoiceStorage,eventRecorder)
 
     private Customer sampleCustomer = new Customer(firstName: "Tomek", lastName: "Kowalski")
 
