@@ -24,4 +24,34 @@ class InventoryServiceTest extends Specification {
         "Product C" |   5               |   10                  ||  15
     }
 
+    def "should throw exception when removing more stock than available"() {
+        given: "a product with limited stock"
+        inventoryService.addStock("Product A", 5)
+
+        when: "attempting to remove more stock then available"
+        inventoryService.removeStock("Product A", 10)
+
+        then: "an IllegalState is thrown with correct message"
+        def exception = thrown(IllegalStateException)
+        exception.message == "Insufficient stock"
+
+    }
+
+    def "should thrown exception when removing zero or negative stock"(){
+        when: "zero or negative quantity is removed"
+        inventoryService.removeStock("Product A", quantity)
+
+        then: "an illegalArgumentExc is thrown"
+        def exception = thrown(IllegalArgumentException)
+        exception.message == "Quantity must be greater than zero"
+
+        where:
+        quantity << [0,-5]
+    }
+
+    def "should return zero stock for nonexist product"(){
+        expect: "getStock should return 0 for a product not in inventory"
+        inventoryService.getStock() == 0
+    }
+
 }
